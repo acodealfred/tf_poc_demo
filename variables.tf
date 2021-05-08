@@ -17,3 +17,13 @@ variable "db_write_capacity" {
   type    = number
   default = 1
 }
+
+variable "aws_ami" {
+	type = string
+	default = "ami-02f26adf094f51167"
+}
+
+variable "instance_type" {
+	type = string
+	default = "t2.micro"
+}
