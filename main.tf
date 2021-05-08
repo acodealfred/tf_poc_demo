@@ -12,7 +12,7 @@ resource "aws_instance" "web" {
   ami = var.aws_ami
   #instance_type = "t2.micro"
   instance_type = var.instance_type
- # user_data = file("init-script.sh")
+  user_data = file("post-installs.sh")
 
  key_name = var.key_name
 
