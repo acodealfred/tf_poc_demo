@@ -27,3 +27,8 @@ variable "instance_type" {
 	type = string
 	default = "t2.nano"
 }
+
+variable "key_name" {
+	type = string
+	default = "poc_admin_key"
+}

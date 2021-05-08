@@ -14,6 +14,7 @@ resource "aws_instance" "web" {
   instance_type = var.instance_type
  # user_data = file("init-script.sh")
 
+ key_name = var.key_name
 
   tags = {
     Name = random_pet.name.id
