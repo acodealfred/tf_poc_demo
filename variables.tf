@@ -40,20 +40,20 @@ variable "poc_vpc_cidr"{
 
 variable "poc_sub_net_1" {
 	type = string
-	defaut = "172.16.0.0/26"
+	default = "172.16.0.0/26"
 }
 
 variable "poc_sub_net_2" {
 	type = string
-	defaut = "172.16.0.64/26"
+	default = "172.16.0.64/26"
 }
 
 variable "poc_sub_net_3" {
 	type = string
-	defaut = "172.16.0.128/26"
+	default = "172.16.0.128/26"
 }
 
 variable "poc_sub_net_4" {
 	type = string
-	defaut = "172.16.0.192/26"
+	default = "172.16.0.192/26"
 }
