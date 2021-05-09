@@ -139,3 +139,33 @@ resource "aws_security_group" "allow_ssh_tls" {
     Name = "Allow SSH-LTS"
   }
 }
+
+#NACL should be desinged carefully.
+
+
+#NAT Gateway for private-subnet
+resource "aws_nat_gateway" "nat_gw" {
+  allocation_id = aws_eip.nat.id
+  subnet_id     = aws_subnet.poc_subnet_public_ap-se1.id
+
+  tags = {
+    Name = "POC_NATGW"
+  }
+}
+
+
+#Lauch AWS-EC2 in VPC-public subnet
+/*
+resource "aws_instance" "web-service" {
+  #ami = "ami-02f26adf094f51167"
+  ami = var.aws_ami
+  #instance_type = "t2.micro"
+  instance_type = var.instance_type
+  user_data = file("post-installs.sh")
+  key_name = var.key_name
+
+  tags = {
+    Name = random_pet.name.id
+  }
+}
+*/
