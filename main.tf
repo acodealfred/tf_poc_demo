@@ -86,22 +86,10 @@ resource "aws_route_table" "pub_rt" {
 
 }
 
-/*
-#Add Route table for private subnet
-resource "aws_route_table" "pri_rt" {
-  vpc_id = aws_vpc.poc_demo.id
-
-  route {
-    cidr_block = "172.16.0.64/26"
-    gateway_id = aws_internet_gateway.igw.id
-  }
-
-  tags = {
-    Name = "PRIVATE_RT_TABLE"
-  }
-
+resource "aws_route_table_association" "public" {
+  subnet_id      = aws_subnet.poc_subnet_public_ap-se1.id
+  route_table_id = aws_route_table.pub_rt.id
 }
-*/
 
 # Public subnet security group
 resource "aws_security_group" "allow_ssh_tls" {
@@ -174,6 +162,10 @@ resource "aws_route_table" "pri_rt" {
 
 }
 
+resource "aws_route_table_association" "private" {
+  subnet_id      = aws_subnet.poc_subnet_private_ap-se1.id
+  route_table_id = aws_route_table.pri_rt.id
+}
 
 #Lauch AWS-EC2 in VPC-public subnet
 /*
