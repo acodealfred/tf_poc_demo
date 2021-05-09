@@ -39,6 +39,8 @@ resource "aws_subnet" "poc_subnet_public_ap-se1" {
     cidr_block = "172.16.0.0/26"
     
     availability_zone = "ap-southeast-1a"
+    map_public_ip_on_launch = true
+
     tags = {
         Name = "poc_subnet_public_ap-se1"
     }
@@ -67,22 +69,24 @@ resource "aws_internet_gateway" "igw" {
   }
 }
 
+
 #Add Route table for Public subnet
 resource "aws_route_table" "pub_rt" {
   vpc_id = aws_vpc.poc_demo.id
 
   route {
-    cidr_block = "172.16.0.0/26"
+    cidr_block = "0.0.0.0/0"
     gateway_id = aws_internet_gateway.igw.id
   }
 
     tags = {
-    Name = "PUBLIC_RT_TABLE"
+    Name = "POC_PUBLIC_RT"
   }
 
 
 }
 
+/*
 #Add Route table for private subnet
 resource "aws_route_table" "pri_rt" {
   vpc_id = aws_vpc.poc_demo.id
@@ -97,3 +101,4 @@ resource "aws_route_table" "pri_rt" {
   }
 
 }
+*/
