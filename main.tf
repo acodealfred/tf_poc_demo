@@ -143,15 +143,23 @@ resource "aws_security_group" "allow_ssh_tls" {
 #NACL should be desinged carefully.
 
 
+#Allocating EIP in 
+
+resource "aws_eip" "nat_gateway" {
+  vpc = true
+}
+
 #NAT Gateway for private-subnet
 resource "aws_nat_gateway" "nat_gw" {
-  allocation_id = aws_eip.nat.id
+  allocation_id = aws_eip.nat_gateway.id
   subnet_id     = aws_subnet.poc_subnet_public_ap-se1.id
 
   tags = {
     Name = "POC_NATGW"
   }
 }
+
+
 
 
 #Lauch AWS-EC2 in VPC-public subnet
