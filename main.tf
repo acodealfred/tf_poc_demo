@@ -39,7 +39,7 @@ resource "aws_subnet" "poc_subnet_public_ap-se1" {
     cidr_block = "poc_sub_net_1"
     
     availability_zone = var.aws_region
-    tags {
+    tags = {
         Name = "poc_subnet_public_ap-se1"
     }
 }
@@ -50,7 +50,7 @@ resource "aws_subnet" "poc_subnet_private_ap-se1" {
     cidr_block = "poc_sub_net_2"
     
     availability_zone = var.aws_region
-    tags {
+    tags = {
         Name = "poc_subnet_private_ap-se1"
     }
 }
