@@ -36,7 +36,7 @@ resource "aws_vpc" "poc_demo" {
 #Public subnet in ap-southeast1 AZ (singapore)
 resource "aws_subnet" "poc_subnet_public_ap-se1" {
     vpc_id = "${aws_vpc.poc_demo.id}"
-    cidr_block = "poc_sub_net_1"
+    cidr_block = "172.16.0.0/26"
     
     availability_zone = var.aws_region
     tags = {
@@ -47,7 +47,7 @@ resource "aws_subnet" "poc_subnet_public_ap-se1" {
 #Private subnet in ap-southeast1 AZ (singapore)
 resource "aws_subnet" "poc_subnet_private_ap-se1" {
     vpc_id = "${aws_vpc.poc_demo.id}"
-    cidr_block = "poc_sub_net_2"
+    cidr_block = "172.16.0.64/26"
     
     availability_zone = var.aws_region
     tags = {
