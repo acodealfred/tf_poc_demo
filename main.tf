@@ -168,7 +168,7 @@ resource "aws_route_table_association" "private" {
 }
 
 #Lauch AWS-EC2 in VPC-public subnet
-/*
+
 resource "aws_instance" "web-service" {
   #ami = "ami-02f26adf094f51167"
   ami = var.aws_ami
@@ -177,8 +177,33 @@ resource "aws_instance" "web-service" {
   user_data = file("post-installs.sh")
   key_name = var.key_name
 
+  availability_zone = "ap-southeast-1a"
+
+  associate_public_ip_address = true
+  vpc_security_group_ids      = [aws_security_group.allow_ssh_tls.id]
+  subnet_id                   = aws_subnet.poc_subnet_public_ap-se1.id
+
   tags = {
-    Name = random_pet.name.id
+    Name = "Web Service"
   }
 }
-*/
+
+
+resource "aws_instance" "test-bed" {
+  #ami = "ami-02f26adf094f51167"
+  ami = var.aws_ami
+  #instance_type = "t2.micro"
+  instance_type = var.instance_type
+  user_data = file("post-installs.sh")
+  key_name = var.key_name
+
+  availability_zone = "ap-southeast-1a"
+
+  associate_public_ip_address = true
+  vpc_security_group_ids      = [aws_security_group.allow_ssh_tls.id]
+  subnet_id                   = aws_subnet.poc_subnet_private_ap-se1.id
+
+  tags = {
+    Name = "Test bed"
+  }
+}
